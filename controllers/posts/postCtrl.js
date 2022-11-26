@@ -27,9 +27,9 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
   }
 
   //1. Get the oath to img
-  //const localPath = `public/images/posts/${req.file.filename}`;
+  const localPath = `public/images/posts/${req.file.filename}`;
   //2.Upload to cloudinary
-  //const imgUploaded = await cloudinaryUploadImg(localPath);
+  const imgUploaded = await cloudinaryUploadImg(localPath);
   try {
     const post = await Post.create({
       ...req.body,
@@ -37,7 +37,7 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
     });
     res.json(post);
     //Remove uploaded img
-    //fs.unlinkSync(localPath);
+    fs.unlinkSync(localPath);
   } catch (error) {
     res.json(error);
   }
