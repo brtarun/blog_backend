@@ -17,7 +17,14 @@ dbConnect();
 //Middleware
 app.use(express.json());
 //usecors
-app.use(cors());
+
+
+const corsOptions ={
+    origin:'https://63808a98f39b430009e944d8--subtle-dieffenbachia-690894.netlify.app/', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 
 //Users route
 app.use("/api/users", userRoutes);
